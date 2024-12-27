@@ -1,6 +1,6 @@
 {
   "name": "@umijs/clack-prompts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "dist/prompt/index.js",
   "types": "dist/prompt/index.d.ts",
