@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "father build",
-    "release": "father doctor && father build && npm version patch && npm publish --public && git push --tags",
+    "doctor": "father doctor",
+    "release": "utools release --git-tag v --github-release --changelog",
     "test": "node test.js"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
+    "@umijs/tools": "^0.1.21",
     "father": "^4.5.1"
   },
   "publishConfig": {
