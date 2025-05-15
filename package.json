@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "father dev",
     "build": "father build",
     "doctor": "father doctor",
     "release": "utools release --git-tag v --github-release --changelog",
@@ -20,6 +21,7 @@
     "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
+    "@types/node": "^22.15.17",
     "@umijs/tools": "^0.1.21",
     "father": "^4.5.1"
   },
@@ -27,3 +29,4 @@
     "access": "public"
   }
 }
+
