@@ -646,11 +646,14 @@ export const note = (message = '', title = ''): void =>
   buildBox(message, title, true);
 export const box = (message = '', title = ''): void =>
   buildBox(message, title, false);
-export const taskLog = (title: string) => {
+export const taskLog = (title: string, options: {
+  parser?: (message: string) => string;
+} = {}) => {
   const BAR = color.dim(S_BAR);
   const ACTIVE = color.green(S_STEP_SUBMIT);
   const SUCCESS = color.green(S_SUCCESS);
   const ERROR = color.red(S_ERROR);
+  const { parser } = options;
 
   // heading
   process.stdout.write(`${BAR}\n`);
@@ -676,7 +679,8 @@ export const taskLog = (title: string) => {
 
   // logs the output
   const print = (limit = 0): void => {
-    const lines = output.split('\n').slice(-limit);
+    const parsedOutput = parser ? parser(output) : output;
+    const lines = parsedOutput.split('\n').slice(-limit);
     // reset frame
     frame = '';
     for (const line of lines) {
