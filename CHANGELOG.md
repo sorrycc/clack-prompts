@@ -1,3 +1,11 @@
+## 0.0.7
+
+`2025-05-22`
+
+- feat: print without limit by [sorrycc](https://github.com/sorrycc)
+- chore: add prettier config and format script by [sorrycc](https://github.com/sorrycc)
+
+
 ## 0.0.6
 
 `2025-05-15`
