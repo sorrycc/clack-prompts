@@ -1,0 +1,8 @@
+{
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "proseWrap": "never",
+  "importOrder": ["^node:", "^@?\\w", "^@/", "^[./]"],
+  "importOrderSortSpecifiers": true
+}

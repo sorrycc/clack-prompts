@@ -11,6 +11,7 @@
     "dev": "father dev",
     "build": "father build",
     "doctor": "father doctor",
+    "format": "prettier --write .",
     "release": "utools release --git-tag v --github-release --changelog",
     "test": "node test.js"
   },
@@ -23,7 +24,8 @@
   "devDependencies": {
     "@types/node": "^22.15.17",
     "@umijs/tools": "^0.1.21",
-    "father": "^4.5.1"
+    "father": "^4.5.1",
+    "prettier": "^3.5.3"
   },
   "publishConfig": {
     "access": "public"
