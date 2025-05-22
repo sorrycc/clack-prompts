@@ -126,9 +126,9 @@ export const text = (opts: TextOptions): Promise<string | symbol> => {
 
       switch (this.state) {
         case 'error':
-          return `${title.trim()}\n${color.yellow(S_BAR)}  ${value}\n${color.yellow(
-            S_BAR_END,
-          )}  ${color.yellow(this.error)}\n`;
+          return `${title.trim()}\n${color.yellow(
+            S_BAR,
+          )}  ${value}\n${color.yellow(S_BAR_END)}  ${color.yellow(this.error)}\n`;
         case 'submit':
           return `${title}${color.gray(S_BAR)}  ${color.dim(this.value || opts.placeholder)}`;
         case 'cancel':
@@ -158,15 +158,15 @@ export const password = (opts: PasswordOptions): Promise<string | symbol> => {
 
       switch (this.state) {
         case 'error':
-          return `${title.trim()}\n${color.yellow(S_BAR)}  ${masked}\n${color.yellow(
-            S_BAR_END,
-          )}  ${color.yellow(this.error)}\n`;
+          return `${title.trim()}\n${color.yellow(
+            S_BAR,
+          )}  ${masked}\n${color.yellow(S_BAR_END)}  ${color.yellow(this.error)}\n`;
         case 'submit':
           return `${title}${color.gray(S_BAR)}  ${color.dim(masked)}`;
         case 'cancel':
-          return `${title}${color.gray(S_BAR)}  ${color.strikethrough(color.dim(masked ?? ''))}${
-            masked ? '\n' + color.gray(S_BAR) : ''
-          }`;
+          return `${title}${color.gray(S_BAR)}  ${color.strikethrough(
+            color.dim(masked ?? ''),
+          )}${masked ? '\n' + color.gray(S_BAR) : ''}`;
         default:
           return `${title}${color.cyan(S_BAR)}  ${value}\n${color.cyan(S_BAR_END)}\n`;
       }
@@ -289,9 +289,9 @@ export const selectKey = <Value extends string>(opts: SelectOptions<Value>) => {
         option.hint ? color.dim(`(${option.hint})`) : ''
       }`;
     }
-    return `${color.gray(color.bgWhite(color.inverse(` ${option.value} `)))} ${label} ${
-      option.hint ? color.dim(`(${option.hint})`) : ''
-    }`;
+    return `${color.gray(
+      color.bgWhite(color.inverse(` ${option.value} `)),
+    )} ${label} ${option.hint ? color.dim(`(${option.hint})`) : ''}`;
   };
 
   return new SelectKeyPrompt({
@@ -307,9 +307,10 @@ export const selectKey = <Value extends string>(opts: SelectOptions<Value>) => {
             'selected',
           )}`;
         case 'cancel':
-          return `${title}${color.gray(S_BAR)}  ${opt(this.options[0]!, 'cancelled')}\n${color.gray(
-            S_BAR,
-          )}`;
+          return `${title}${color.gray(S_BAR)}  ${opt(
+            this.options[0]!,
+            'cancelled',
+          )}\n${color.gray(S_BAR)}`;
         default: {
           return `${title}${color.cyan(S_BAR)}  ${this.options
             .map((option, i) =>
@@ -486,23 +487,23 @@ export const groupMultiselect = <Value>(
       spacedGroups && !isItem ? `\n${color.cyan(S_BAR)}  ` : '';
 
     if (state === 'active') {
-      return `${spacingPrefix}${color.dim(prefix)}${color.cyan(S_CHECKBOX_ACTIVE)} ${label} ${
-        option.hint ? color.dim(`(${option.hint})`) : ''
-      }`;
+      return `${spacingPrefix}${color.dim(prefix)}${color.cyan(
+        S_CHECKBOX_ACTIVE,
+      )} ${label} ${option.hint ? color.dim(`(${option.hint})`) : ''}`;
     } else if (state === 'group-active') {
       return `${spacingPrefix}${prefix}${color.cyan(S_CHECKBOX_ACTIVE)} ${color.dim(label)}`;
     } else if (state === 'group-active-selected') {
       return `${spacingPrefix}${prefix}${color.green(S_CHECKBOX_SELECTED)} ${color.dim(label)}`;
     } else if (state === 'selected') {
-      return `${spacingPrefix}${color.dim(prefix)}${color.green(S_CHECKBOX_SELECTED)} ${color.dim(
-        label,
-      )}`;
+      return `${spacingPrefix}${color.dim(prefix)}${color.green(
+        S_CHECKBOX_SELECTED,
+      )} ${color.dim(label)}`;
     } else if (state === 'cancelled') {
       return color.strikethrough(color.dim(label));
     } else if (state === 'active-selected') {
-      return `${spacingPrefix}${color.dim(prefix)}${color.green(S_CHECKBOX_SELECTED)} ${label} ${
-        option.hint ? color.dim(`(${option.hint})`) : ''
-      }`;
+      return `${spacingPrefix}${color.dim(prefix)}${color.green(
+        S_CHECKBOX_SELECTED,
+      )} ${label} ${option.hint ? color.dim(`(${option.hint})`) : ''}`;
     } else if (state === 'submitted') {
       return color.dim(label);
     }
@@ -632,7 +633,9 @@ function buildBox(message = '', title = '', dimmed = true) {
   const msg = lines
     .map(
       (ln) =>
-        `${color.gray(S_BAR)}  ${dimmed ? color.dim(ln) : ln}${' '.repeat(len - strip(ln).length)}${color.gray(S_BAR)}`,
+        `${color.gray(S_BAR)}  ${dimmed ? color.dim(ln) : ln}${' '.repeat(
+          len - strip(ln).length,
+        )}${color.gray(S_BAR)}`,
     )
     .join('\n');
   process.stdout.write(
@@ -646,9 +649,12 @@ export const note = (message = '', title = ''): void =>
   buildBox(message, title, true);
 export const box = (message = '', title = ''): void =>
   buildBox(message, title, false);
-export const taskLog = (title: string, options: {
-  parser?: (message: string) => string;
-} = {}) => {
+export const taskLog = (
+  title: string,
+  options: {
+    parser?: (message: string) => string;
+  } = {},
+) => {
   const BAR = color.dim(S_BAR);
   const ACTIVE = color.green(S_STEP_SUBMIT);
   const SUCCESS = color.green(S_SUCCESS);
@@ -693,9 +699,10 @@ export const taskLog = (title: string, options: {
     set text(data: string) {
       clear();
       output += data;
-      // half the height of the terminal
-      const frameHeight = Math.ceil(process.stdout.rows / 2);
-      print(frameHeight);
+      // // half the height of the terminal
+      // const frameHeight = Math.ceil(process.stdout.rows / 2);
+      // print(frameHeight);
+      print();
     },
     fail(message: string): void {
       clear(true);
